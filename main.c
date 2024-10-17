@@ -29,8 +29,8 @@ int main(){
     
     double xLeft = -2.0;
     double xRight = 1.0;
-    double yDown = -1.0;
-    double yUp = 1.0;
+    double yDown = -1.5;
+    double yUp = 1.5;
     
     double dx = (xRight - xLeft) / (width - 1);
     double dy = (yUp - yDown) / (height - 1);
@@ -53,7 +53,7 @@ int main(){
             }
             else if(val >= 0.8 * limit){
                 
-                printf("+");
+                printf("$");
             }
             else if(val >= 0.7 * limit){
                 
@@ -69,11 +69,11 @@ int main(){
             }
             else if(val >= 0.4 * limit){
                 
-                printf("^");
+                printf("+");
             }
             else if(val >= 0.3 * limit){
                 
-                printf("V");
+                printf("-");
             }
             else if(val >= 0.2 * limit){
                 
