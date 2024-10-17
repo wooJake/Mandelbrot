@@ -1,8 +1,9 @@
 #include <stdio.h>
 
+int limit = 100;
+
 int Mandel(double real, double imag){
     
-    int limit = 100;
     double zReal = real;
     double zImag = imag;
     
@@ -23,7 +24,7 @@ int Mandel(double real, double imag){
 }
 int main(){
     
-    int width = 100;
+    int width = 167;
     int height = 100;
     
     double xLeft = -2.0;
@@ -42,13 +43,49 @@ int main(){
             
             int val = Mandel(x,y);
             
-            if(val == 100){
+            if(val == limit){
                 
-                printf(" ");
+                printf("@");
+            }
+            else if(val >= 0.9 * limit){
+                
+                printf("#");
+            }
+            else if(val >= 0.8 * limit){
+                
+                printf("+");
+            }
+            else if(val >= 0.7 * limit){
+                
+                printf("&");
+            }
+            else if(val >= 0.6 * limit){
+                
+                printf("?");
+            }
+            else if(val >= 0.5 * limit){
+                
+                printf("!");
+            }
+            else if(val >= 0.4 * limit){
+                
+                printf("^");
+            }
+            else if(val >= 0.3 * limit){
+                
+                printf("V");
+            }
+            else if(val >= 0.2 * limit){
+                
+                printf("*");
+            }
+            else if(val >= 0.1 * limit){
+                
+                printf("\'");
             }
             else{
                 
-                printf("@");
+                printf(" ");
             }
         }
         printf("\n");
