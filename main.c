@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int limit = 100;
+char chars[10] = {' ','\'','*','-','+','&','%','$','#','@'};
 
 int Mandel(double real, double imag){
     
@@ -28,9 +29,9 @@ int main(){
     int height = 100;
     
     double xLeft = -2.0;
-    double xRight = 1.0;
-    double yDown = -1.5;
-    double yUp = 1.5;
+    double xRight = 0.47;
+    double yDown = -1.12;
+    double yUp = 1.12;
     
     double dx = (xRight - xLeft) / (width - 1);
     double dy = (yUp - yDown) / (height - 1);
@@ -42,54 +43,26 @@ int main(){
             double y = yUp - i * dy;
             
             int val = Mandel(x,y);
-            
-            if(val == limit){
-                
-                printf("@");
-            }
-            else if(val >= 0.9 * limit){
-                
-                printf("#");
-            }
-            else if(val >= 0.8 * limit){
-                
-                printf("$");
-            }
-            else if(val >= 0.7 * limit){
-                
-                printf("&");
-            }
-            else if(val >= 0.6 * limit){
-                
-                printf("?");
-            }
-            else if(val >= 0.5 * limit){
-                
-                printf("!");
-            }
-            else if(val >= 0.4 * limit){
-                
-                printf("+");
-            }
-            else if(val >= 0.3 * limit){
-                
-                printf("-");
-            }
-            else if(val >= 0.2 * limit){
-                
-                printf("*");
-            }
-            else if(val >= 0.1 * limit){
-                
-                printf("\'");
-            }
-            else{
-                
-                printf(" ");
+
+            for(int k = 0; k < 10; ++k){
+
+                if(val <= (k / 10.0) * limit){
+
+                    printf("%c", chars[k]);
+                    break;
+                }
+                if(val == limit){
+
+                    printf("@");
+                    break;
+                }
             }
         }
         printf("\n");
     }
+
+    return 0;
+}
 
     return 0;
 }
