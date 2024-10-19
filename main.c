@@ -36,6 +36,7 @@ int main(){
     double dx = (xRight - xLeft) / (width - 1);
     double dy = (yUp - yDown) / (height - 1);
     
+    #pragma omp parallel for
     for(int i = 0; i < height; ++i){
         for(int j = 0; j < width; ++j){
             
@@ -60,9 +61,6 @@ int main(){
         }
         printf("\n");
     }
-
-    return 0;
-}
 
     return 0;
 }
