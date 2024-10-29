@@ -56,8 +56,8 @@ int main(){
             //Starting from top left of map to scaled coordinate.
             //j is positive because we are counting up from the left of the map.
             //i is negative because we are counting down from the top of the map.
-            double x = -xShift + xLeft + j * dx;
-            double y = -yShift + yUp - i * dy;
+            double x = xShift + xLeft + j * dx;
+            double y = yShift + yUp - i * dy;
             
             //Obtaining limit reached from Mandel function.
             int val = Mandel(x,y);
