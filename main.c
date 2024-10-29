@@ -38,15 +38,16 @@ int main(){
     //Scaling width by difference of leftmost and rightmost then dividing by width, same with height but with upmost and downmost.
 
     //Variables to zoom in more (smaller value is more zoomed in).
-    double xZoom = 0.5;
+    double xZoom = 1.0;
     double yZoom = 1.0;
 
     //Variables to shift set across the plane.
     double xShift = 0.0;
     double yShift = 0.0;
-
-    double dx = ((xRight - xLeft) / (width - 1));
-    double dy = ((yUp - yDown) / (height - 1));
+    
+    //Zooming needs to be fixed somehow.
+    double dx = xZoom * (xRight - xLeft) / (width - 1);
+    double dy = yZoom * (yUp - yDown) / (height - 1);
     
     //Parallelizing main loop.
     #pragma omp parallel for
@@ -56,8 +57,8 @@ int main(){
             //Starting from top left of map to scaled coordinate.
             //j is positive because we are counting up from the left of the map.
             //i is negative because we are counting down from the top of the map.
-            double x = xShift + xZoom * (xLeft + j * dx);
-            double y = yShift + yZoom * (yUp - i * dy);
+            double x = xShift + (xLeft + j * dx);
+            double y = yShift + (yUp - i * dy);
             
             //Obtaining limit reached from Mandel function.
             int val = Mandel(x,y);
