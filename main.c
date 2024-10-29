@@ -35,6 +35,7 @@ int main(){
     double yUp = 1.12;
     
     //Making variables to ensure set is fully visible.
+    //Scaling width by averaging leftmost and rightmost then dividing by width, same with height but with upmost and downmost.
     double dx = (xRight - xLeft) / (width - 1);
     double dy = (yUp - yDown) / (height - 1);
     
