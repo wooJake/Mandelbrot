@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <omp.h>
 
 int limit = 100;
 char chars[10] = {' ','\'','*','-','+','&','%','$','#','@'};
@@ -30,24 +31,23 @@ int main(){
     
     //Setting bounds of map.
     double xLeft = -2.0;
-    double xRight = 0.47;
-    double yDown = -1.12;
-    double yUp = 1.12;
+    double xRight = 2.0;
+    double yDown = -2.0;
+    double yUp = 2.0;
     
     //Making variables to ensure set is fully visible.
     //Scaling width by difference of leftmost and rightmost then dividing by width, same with height but with upmost and downmost.
 
     //Variables to zoom in more (smaller value is more zoomed in).
-    double xZoom = 1.0;
-    double yZoom = 1.0;
+    double zoom = 1.0;
 
     //Variables to shift set across the plane.
     double xShift = 0.0;
     double yShift = 0.0;
     
-    //Zooming needs to be fixed somehow.
-    double dx = xZoom * (xRight - xLeft) / (width - 1);
-    double dy = yZoom * (yUp - yDown) / (height - 1);
+    //Using this to scrunch down the size of the coordinates to a managable size.
+    double dx = (xRight - xLeft) / (width - 1);
+    double dy = (yUp - yDown) / (height - 1);
     
     //Parallelizing main loop.
     #pragma omp parallel for
@@ -57,8 +57,8 @@ int main(){
             //Starting from top left of map to scaled coordinate.
             //j is positive because we are counting up from the left of the map.
             //i is negative because we are counting down from the top of the map.
-            double x = xShift + (xLeft + j * dx);
-            double y = yShift + (yUp - i * dy);
+            double x = xShift + zoom * (xLeft + j * dx);
+            double y = yShift + zoom * (yUp - i * dy);
             
             //Obtaining limit reached from Mandel function.
             int val = Mandel(x,y);
